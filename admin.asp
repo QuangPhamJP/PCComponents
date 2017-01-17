@@ -1,3 +1,4 @@
+<%@LANGUAGE="VBSCRIPT" CODEPAGE="65001"%>
 <!DOCTYPE HTML>
 <head>
 <title>PC & Components Online</title>
@@ -14,6 +15,7 @@
 <script type="text/javascript">
   $(document).ready(function($){
     $('#dc_mega-menu-orange').dcMegaMenu({rowItems:'4',speed:'fast',effect:'fade'});
+    $('.header_top_right').css({"display" :"flex", "align-items": "center"});
   });
 </script>
 </head>
@@ -25,11 +27,6 @@
         <a href="index.html"><img src="images/logo.png" alt="" /></a>
       </div>
         <div class="header_top_right">
-          <div class="search_box">
-            <form>
-              <input type="text" value="Search for Products" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search for Products';}"><input type="submit" value="SEARCH">
-            </form>
-          </div>
           <div class="shopping_cart">
           <div class="cart">
             <a href="#" title="View my shopping cart" rel="nofollow">
@@ -63,7 +60,7 @@
  <div class="main">
     <div class="content">
       <h1>Quản lý Admin</h1><br>
-      <form action="">
+      <form action="" style="text-align: center;">
       <table>
         <tr><td>Username</td>
             <td>Password</td>
@@ -76,7 +73,12 @@
           <td><input type="text" value="super"></td>
         </tr>
       </table>
+      <div>
+          <td><input type="button" value="Thêm"></td>
+          <td><input type="button" value="Xóa"></td>
+      </div>
     </form>
+      
         <div class="clear"></div>
     </div>
  </div>
@@ -97,11 +99,11 @@
         <div class="col_1_of_4 span_1_of_4">
           <h4>Why buy from us</h4>
             <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="faq.html">Customer Service</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="contact.html"><span>Site Map</span></a></li>
-            <li><a href="preview-2.html"><span>Search Terms</span></a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="faq.html">Customer Service</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="contact.html"><span>Site Map</span></a></li>
+              <li><a href="preview-2.html"><span>Search Terms</span></a></li>
             </ul>
         </div>
         <div class="col_1_of_4 span_1_of_4">
@@ -133,7 +135,7 @@
         </div>
       </div>
       <div class="copy_right">
-        <p>Compant Name © All rights Reseverd | Design by  <a href="http://w3layouts.com">W3Layouts</a> </p>
+        <p>Compant Name © All rights Reseverd | Design by G3 </p>
        </div>
      </div>
     </div>
@@ -153,6 +155,16 @@
     });
   </script>
     <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+    <%
+        Session.TimeOut = 3
+        if(Session("username_admin") = "") then
+	  	    Response.redirect("Admin_Login.asp")
+		    else
+          Response.Write("<script>$('<p class=welcom_admin"&">Welcome&nbsp</p>').insertAfter('.login');</script>")
+          Response.Write("<script>$('<p>"&"<a href=#>"&Session("username_admin")&"</a>"&"</p>').insertAfter('.welcom_admin')</script>")
+          Response.Write("<script>$('<input type=button value=Logout id=logout></input>').appendTo('.header_top_right')</script>")
+        end if
+    %>
 </body>
 </html>
 
