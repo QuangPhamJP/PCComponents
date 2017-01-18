@@ -13,9 +13,12 @@
 <script type="text/javascript" src="js/nav.js"></script>
 <script type="text/javascript" src="js/nav-hover.js"></script>
 <script type="text/javascript">
+
   $(document).ready(function($){
+    var check_login = 0
     $('#dc_mega-menu-orange').dcMegaMenu({rowItems:'4',speed:'fast',effect:'fade'});
     $('.header_top_right').css({"display" :"flex", "align-items": "center"});
+    $('<p class="welcome_admin">welcome&nbsp</p>').insertAfter('.login');
   });
 </script>
 </head>
@@ -83,6 +86,7 @@
     </div>
  </div>
 </div>
+
    <div class="footer">
       <div class="wrapper"> 
        <div class="section group">
@@ -154,17 +158,17 @@
       
     });
   </script>
+
     <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
-    <%
-        Session.TimeOut = 3
-        if(Session("username_admin") = "") then
-	  	    Response.redirect("Admin_Login.asp")
-		    else
-          Response.Write("<script>$('<p class=welcom_admin"&">Welcome&nbsp</p>').insertAfter('.login');</script>")
-          Response.Write("<script>$('<p>"&"<a href=#>"&Session("username_admin")&"</a>"&"</p>').insertAfter('.welcom_admin')</script>")
-          Response.Write("<script>$('<input type=button value=Logout id=logout></input>').appendTo('.header_top_right')</script>")
-        end if
-    %>
+    
 </body>
 </html>
-
+ <%
+        Session.TimeOut = 3
+        if(Session("username_admin") = "") then
+          Response.redirect("Admin_Login.asp")
+        else
+          Response.Write("<script>$('<form action=""logout.asp""><input type=""submit"" value=""Logout"" id=""logout""></form></input>').insertAfter('.login')</script>")
+          Response.Write("<script>$('<p><a href=#>"&Session("username_admin")&"</a></p>').insertAfter('.login')</script>")
+        end if
+%>

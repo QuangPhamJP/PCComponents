@@ -16,7 +16,6 @@
 				check++;
 				if(!document.cookie){
 					if(check == 1){
-
 						$('.wrap').append("<div id=turn_off_cookie><p>Yêu cầu bật cookie</p></div>");
 						$('#turn_off_cookie').css({"background-color":"#ffdb99", "text-align":"center"
 							, "margin-top":"10px"});
@@ -25,7 +24,6 @@
 				}
 				else
 					return true;
-				
 		}
 		history.forward();
 		$(document).ready(function(){
@@ -62,10 +60,7 @@
 			Session("state_login_fail") = ""
 		elseif(Session("username_admin") <> "") then
 			Response.redirect("admin.asp")
-		elseif(Session("check") = true) then
-			response.AddHeader "request","1"
 		end if
-		
 	%>
 </body>
 </html>
